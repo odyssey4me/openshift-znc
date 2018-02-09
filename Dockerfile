@@ -14,10 +14,10 @@ LABEL io.k8s.description="Run ZNC search in OpenShift" \
 
 # Give the ZNC directory to root group (not root user)
 # https://docs.openshift.org/latest/creating_images/guidelines.html#openshift-origin-specific-guidelines
-RUN chgrp -R 0 /znc-data \
-  && chmod -R g+rwX /znc-data
+RUN chgrp -R 0 /opt/znc \
+  && chmod -R g+rwX /opt/znc
 
-RUN chgrp -R 0 /znc-data \
-  && chmod -R g+rwX /znc-data
+RUN chgrp -R 0 /opt/znc \
+  && chmod -R g+rwX /opt/znc
 
 USER 8983
