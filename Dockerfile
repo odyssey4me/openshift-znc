@@ -18,12 +18,15 @@ LABEL io.k8s.description="Run ZNC search in OpenShift" \
 # But let's just smoke the chown stuff - we don't need do do that in a script
 RUN rm -rf /startup-sequence/50-chown.sh
 
+# overwrite the launch script with our own
+COPY 99-launch.sh /startup-sequence/
+
 # Give the ZNC directory to root group (not root user)
 # https://docs.openshift.org/latest/creating_images/guidelines.html#openshift-origin-specific-guidelines
 RUN chgrp -R 0 /opt/znc \
   && chmod -R g+rwX /opt/znc
 
-RUN chgrp -R 0 /opt/znc \
-  && chmod -R g+rwX /opt/znc
+RUN chgrp -R 0 /znc-data \
+  && chmod -R g+rwX /znc-data
 
 USER 1001
