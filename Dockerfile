@@ -12,6 +12,9 @@ LABEL io.k8s.description="Run ZNC search in OpenShift" \
 # If we need to add files as part of every ZNC conf, they could go here
 # COPY ./modules/ /znc-data/modules
 
+# Override the entry point to do what we want
+COPY entrypoint.sh /
+
 # Give the ZNC directory to root group (not root user)
 # https://docs.openshift.org/latest/creating_images/guidelines.html#openshift-origin-specific-guidelines
 RUN chgrp -R 0 /opt/znc \
@@ -20,4 +23,4 @@ RUN chgrp -R 0 /opt/znc \
 RUN chgrp -R 0 /opt/znc \
   && chmod -R g+rwX /opt/znc
 
-USER 8983
+USER 1001
