@@ -29,7 +29,4 @@ COPY znc.conf /startup-sequence/configs/
 RUN chgrp -R 0 /opt/znc \
   && chmod -R g+rwX /opt/znc
 
-RUN chgrp -R 0 /znc-data \
-  && chmod -R g+rwX /znc-data
-
 USER 1001
