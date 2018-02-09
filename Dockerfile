@@ -22,7 +22,7 @@ RUN rm -rf /startup-sequence/50-chown.sh
 COPY 99-launch.sh /startup-sequence/
 
 # copy in a default data file
-COPY znc.conf /znc-data
+COPY znc.conf /znc-data/configs
 
 # Give the ZNC directory to root group (not root user)
 # https://docs.openshift.org/latest/creating_images/guidelines.html#openshift-origin-specific-guidelines
