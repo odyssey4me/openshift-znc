@@ -15,14 +15,13 @@ Now you can access it via the route that was automatically exposed on port 6697.
 3) Pause the rollouts so we can make all our changes without rolling updates
 `oc rollout pause dc/znc-demo`
 4) Map the configmap to the deployment config by running:
-`oc volume dc/znc-demo --add --configmap-name=znc-config --mount-path='/znc-config/configs/'`
+`oc volume dc/znc-demo --add --configmap-name=znc-config --mount-path='/znc-config/configs/' --default-mode='0777'`
 5) Set an ENV var to tell the scripts running in the pod to use a different config path
-`oc env dc/znc-demo DATADIR='/znc-config'`
+`oc env dc/znc-demo OVERRIDE_DATADIR='/znc-config'`
 6) Resume deployments
 `oc rollout resume dc/znc-demo`
-7) Now OCP will re-deploy and the znc.conf file is mounted in a /znc-config path on the running container
+7) Now OCP will re-deploy and the znc.conf file is mounted in a /znc-config/configs path on the running container
 
-You can do all of the above with the webconsole too - it's fairly straight-forward:  Start by going the deployment, scroll down and click "Add Config Files".  Continue from there...
 
 ## Setup the config to persist via a persistent volume
 You could also consume the config map data in a PV so that changes are preserved.  I'll leave this as an exercise for you to figure out.  Start by reading the details here:
