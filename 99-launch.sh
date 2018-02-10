@@ -1,7 +1,4 @@
-if [[ -z "${OVERRIDE_DATADIR}" ]]; then
-  DATADIR=${OVERRIDE_DATADIR}
-fi
-
+DATADIR=${OVERRIDE_DATADIR:-$DATADIR}
 echo using datadir of $DATADIR
 mkdir -p $DATADIR/configs
 cp /startup-sequence/configs/znc.conf $DATADIR/configs
