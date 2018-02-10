@@ -1,5 +1,5 @@
-# Open Shift ZNC
-Example of wrapping the dockerhub znc container image to run in OpenShift
+# OpenShift ZNC
+Example of wrapping the dockerhub znc container image to run in OpenShift.
 
 Create the app from a Docker image and expose it to webtraffic
 * `oc new-app https://github.com/dudash/openshift-znc.git --name=znc-demo`
