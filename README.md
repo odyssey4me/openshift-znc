@@ -1,8 +1,9 @@
 # Open Shift ZNC
 Example of wrapping the dockerhub znc container image to run in OpenShift
 
-Create the app from a Docker image
-`oc new-app https://github.com/dudash/openshift-znc.git --name=znc-demo`
+Create the app from a Docker image and expose it to webtraffic
+* `oc new-app https://github.com/dudash/openshift-znc.git --name=znc-demo`
+* `oc expose service znc-demo`
 
 Now you can access it via the route that was automatically exposed on port 6697.
 
@@ -11,9 +12,15 @@ Now you can access it via the route that was automatically exposed on port 6697.
 1) Download the znc.conf from this repo or create your own
 2) Turn that file into a config map by running:
 `oc create configmap znc-config --from-file=./znc.conf`
-3) Map the configmap to the deployment config by running:
-`oc volume dc/openshift-znc --add --configmap-name=znc-config`
-4) Now OCP will re-deploy and the znc.conf file is mounted in a /znc-config path on the running container
+3) Pause the rollouts so we can make all our changes without rolling updates
+`oc rollout pause dc/znc-demo`
+4) Map the configmap to the deployment config by running:
+`oc volume dc/znc-demo --add --configmap-name=znc-config --mount-path='/znc-config/configs/'`
+5) Set an ENV var to tell the scripts running in the pod to use a different config path
+`oc env dc/znc-demo DATADIR='/znc-config'`
+6) Resume deployments
+`oc rollout resume dc/znc-demo`
+7) Now OCP will re-deploy and the znc.conf file is mounted in a /znc-config path on the running container
 
 You can do all of the above with the webconsole too - it's fairly straight-forward:  Start by going the deployment, scroll down and click "Add Config Files".  Continue from there...
 
