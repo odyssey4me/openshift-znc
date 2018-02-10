@@ -1,5 +1,7 @@
-echo found the following configs:
-ls -al /startup-sequence/configs/
+if [[ -z "${OVERRIDE_DATADIR}" ]]; then
+  DATADIR=${OVERRIDE_DATADIR}
+fi
+
 echo using datadir of $DATADIR
 mkdir -p $DATADIR/configs
 cp /startup-sequence/configs/znc.conf $DATADIR/configs
