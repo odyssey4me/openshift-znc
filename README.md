@@ -5,6 +5,7 @@ ZNC is an IRC bouncer.  And this git repo is a simple example of wrapping the do
 
 [![docker hub stats](http://dockeri.co/image/dudash/openshift-znc)](https://hub.docker.com/r/dudash/openshift-znc/)
 
+<img src="https://www.openshift.com/images/logos/openshift/Logotype_RH_OpenShift_wLogo_RGB_Gray.svg" alt="OCP logo" height="70" >
 
 ## How to use all of this with your apps
 Sounds cool right?  It is.  And here's how you can use it.
