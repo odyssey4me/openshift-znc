@@ -18,7 +18,7 @@ Create the app from the Docker Hub image and expose it to webtraffic
 Now you can access it via the route that was automatically exposed on port 6697.
 
 ### Even better you can fork this repo, tweak it and run your tweaked image
-[Fork this repo][5]
+Fork this repo by clicking the button on the top right of this page.
 
 Create the app from a Docker image and expose it to webtraffic
 * `oc new-app https://github.com/yourfork/openshift-znc.git --name=znc-demo`
@@ -55,4 +55,3 @@ You could also consume the config map data in a PV so that changes are preserved
 [2]: https://docs.openshift.com/container-platform/3.7/creating_images/guidelines.html#openshift-specific-guidelines
 [3]: https://docs.openshift.com/container-platform/3.7/dev_guide/configmaps.html#configmaps-use-case-consuming-in-volumes
 [4]: https://fedoramagazine.org/never-leave-irc-znc/
-[5]: https://github.com/dudash/openshift-znc/edit/master/README.md#fork-destination-box
