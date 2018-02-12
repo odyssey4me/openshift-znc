@@ -1,11 +1,31 @@
 # OpenShift ZNC
-Example of wrapping the dockerhub znc container image to run in OpenShift.
+Many avid IRC users use an IRC bouncer, a proxy service that remains persistently connected to your preferred IRC networks and channels. Instead of connecting directly to an IRC network such as irc.example.com, you connect to a machine like bouncer.mysite.com which runs the bouncer software. The bouncer, in turn, is connected to the IRC network. When you log into your bouncer, it shows messages in your channels you may have missed while offline, as well as private messages from other users.  [Read more here][4].
 
-Create the app from a Docker image and expose it to webtraffic
-* `oc new-app https://github.com/dudash/openshift-znc.git --name=znc-demo`
+ZNC is an IRC bouncer.  And this git repo is a simple example of wrapping the dockerhub znc container image to run our own ZNC bouncer in OpenShift.
+
+[![docker hub stats](http://dockeri.co/image/dudash/openshift-znc)](https://hub.docker.com/r/dudash/openshift-znc/)
+
+
+## How to use all of this with your apps
+Sounds cool right?  It is.  And here's how you can use it.
+
+### If you just want to try running this ZNC image in OpenShift...
+
+Create the app from the Docker Hub image and expose it to webtraffic
+* `oc new-app dudash/openshift-znc --name=znc-demo`
 * `oc expose service znc-demo`
 
 Now you can access it via the route that was automatically exposed on port 6697.
+
+### Even better you can fork this repo, tweak it and run your tweaked image
+[Fork this repo][5]
+
+Create the app from a Docker image and expose it to webtraffic
+* `oc new-app https://github.com/yourfork/openshift-znc.git --name=znc-demo`
+* `oc expose service znc-demo`
+
+(Note: if you are using OpenShift Online you will have to build your own docker image and new-app from that image because Dockerfile builds are currently not allowed when using OpenShift Online).
+
 
 ## Setup the config to persist via a config map
  Here's a quick way to set that up.
@@ -34,3 +54,5 @@ You could also consume the config map data in a PV so that changes are preserved
 [1]: https://hub.docker.com/_/znc/
 [2]: https://docs.openshift.com/container-platform/3.7/creating_images/guidelines.html#openshift-specific-guidelines
 [3]: https://docs.openshift.com/container-platform/3.7/dev_guide/configmaps.html#configmaps-use-case-consuming-in-volumes
+[4]: https://fedoramagazine.org/never-leave-irc-znc/
+[5]: https://github.com/dudash/openshift-znc/edit/master/README.md#fork-destination-box
